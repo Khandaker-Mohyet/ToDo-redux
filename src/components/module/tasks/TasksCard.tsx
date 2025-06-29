@@ -1,40 +1,42 @@
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { cn } from '@/lib/utils';
-import { toggleCompleteState } from '@/redux/features/task/taskSlice';
+import { deleteTask, toggleCompleteState } from '@/redux/features/task/taskSlice';
 import { useAppDispatch } from '@/redux/hook';
 import type { ITask } from '@/types';
 import { Trash2 } from 'lucide-react'
 
-interface IProps{
+interface IProps {
     task: ITask;
 }
 
-const TasksCard = ({task}:IProps) => {
+const TasksCard = ({ task }: IProps) => {
 
     const dispatch = useAppDispatch();
 
-  return (
-    <div className='border px-5 py-3 rounded-md w-3/4 mx-auto'>
-        <div className='flex justify-between item-center'>
-            <div className='flex gap-2 items-center'>
-                <div className={cn('size-3 rounded-full',{
-                    "bg-green-500":task.priority === "low",
-                    "bg-yellow-500":task.priority === "medium",
-                    "bg-red-500":task.priority === "high",
-                })}></div>
-                <h1>{task.title}</h1>
+    return (
+        <div className='border px-5 py-3 rounded-md w-3/4 mx-auto'>
+            <div className='flex justify-between item-center'>
+                <div className='flex gap-2 items-center'>
+                    <div className={cn('size-3 rounded-full', {
+                        "bg-green-500": task.priority === "low",
+                        "bg-yellow-500": task.priority === "medium",
+                        "bg-red-500": task.priority === "high",
+                    })}></div>
+                    <h1 className={cn({"line-through":task.isCompleted})}>{task.title}</h1>
+                </div>
+                <div className='flex gap-3 items-center'>
+                    <Button
+                        onClick={() => dispatch(deleteTask(task.id))}
+                        variant="link" className='p-0 text-red-500'>
+                        <Trash2 />
+                    </Button>
+                    <Checkbox checked={task.isCompleted} onClick={() => dispatch(toggleCompleteState(task.id))} />
+                </div>
             </div>
-            <div className='flex gap-3 items-center'>
-                <Button variant="link" className='p-0 text-red-500'>
-                    <Trash2/>
-                </Button>
-                <Checkbox onClick={()=>dispatch(toggleCompleteState(task.id))}/>
-            </div>
+            <p className='mt-5'>{task.description}</p>
         </div>
-        <p className='mt-5'>{task.description}</p>
-    </div>
-  )
+    )
 }
 
 export default TasksCard
