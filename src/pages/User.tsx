@@ -2,7 +2,7 @@
 
 function user() {
   return (
-    <div>user</div>
+    <div>This is User Page</div>
   )
 }
 
