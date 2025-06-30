@@ -40,9 +40,9 @@ export function AddTaskModal() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add Task</DialogTitle>
+                    <DialogTitle>Create Task</DialogTitle>
                     <DialogDescription className="sr-only">
-                        Fill up this form to add task
+                        Fill up this form to Create task
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
