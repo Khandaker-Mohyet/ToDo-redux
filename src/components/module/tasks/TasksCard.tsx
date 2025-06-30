@@ -27,7 +27,7 @@ const TasksCard = ({ task }: IProps) => {
                 </div>
                 <div className='flex gap-3 items-center'>
                     <Button
-                        onClick={}
+                        onClick={() => dispatch(deleteTask(task.id))}
                         variant="link" className='p-0 text-red-500'>
                         <Trash2 />
                     </Button>
