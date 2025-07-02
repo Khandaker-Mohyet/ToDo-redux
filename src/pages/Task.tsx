@@ -12,7 +12,7 @@ function Task() {
   return (
     <div className="mx-auto max-w-7xl px-5 mt-20">
       <div className="flex justify-end items-center gap-5">
-        <h1 className="">Tasks</h1>
+        <h1 className="">This is task page</h1>
         <Tabs defaultValue="all">
           <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger onClick={()=> dispatch(updateFilter("all"))} value="all">All</TabsTrigger>
